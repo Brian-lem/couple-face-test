@@ -357,22 +357,40 @@ switchMode('couple');
 function handleUpload(e, which) {
   const file = e.target.files[0];
   if (!file) return;
+  // 先压缩图片再转base64
+  const img = new Image();
   const reader = new FileReader();
   reader.onload = function(evt) {
-    const dataUrl = evt.target.result;
-    if (which === 'A') {
-      photoA = dataUrl;
-      document.getElementById('previewA').src = dataUrl;
-      document.getElementById('previewA').style.display = 'block';
-      document.querySelector('#boxA .placeholder').style.display = 'none';
-      document.getElementById('tagA').style.display = 'block';
-    } else {
-      photoB = dataUrl;
-      document.getElementById('previewB').src = dataUrl;
-      document.getElementById('previewB').style.display = 'block';
-      document.querySelector('#boxB .placeholder').style.display = 'none';
-      document.getElementById('tagB').style.display = 'block';
-    }
+    img.onload = function() {
+      // 压缩到最大宽度800px，质量0.7
+      const maxW = 800;
+      let w = img.width, h = img.height;
+      if (w > maxW) {
+        h = h * maxW / w;
+        w = maxW;
+      }
+      const canvas = document.createElement('canvas');
+      canvas.width = w;
+      canvas.height = h;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, w, h);
+      const compressed = canvas.toDataURL('image/jpeg', 0.7);
+      
+      if (which === 'A') {
+        photoA = compressed;
+        document.getElementById('previewA').src = compressed;
+        document.getElementById('previewA').style.display = 'block';
+        document.querySelector('#boxA .placeholder').style.display = 'none';
+        document.getElementById('tagA').style.display = 'block';
+      } else {
+        photoB = compressed;
+        document.getElementById('previewB').src = compressed;
+        document.getElementById('previewB').style.display = 'block';
+        document.querySelector('#boxB .placeholder').style.display = 'none';
+        document.getElementById('tagB').style.display = 'block';
+      }
+    };
+    img.src = evt.target.result;
   };
   reader.readAsDataURL(file);
 }
