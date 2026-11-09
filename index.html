@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>缘分面相 · AI夫妻相/亲子相匹配度测试</title>
+<title>缘分面相 · 夫妻相/亲子相匹配度测试</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
@@ -231,12 +231,10 @@
 </head>
 <body>
 
-<button class="settings-btn" onclick="showSettings()">⚙ API设置</button>
-
 <div class="container">
   <div class="header">
     <h1>❤️ 缘分面相</h1>
-    <p>AI深度分析你们的长相匹配度</p>
+    <p>深度分析你们的长相匹配度</p>
   </div>
 
   <!-- 模式选择 -->
@@ -278,12 +276,12 @@
 
   <div class="error-msg" id="errorMsg"></div>
 
-  <button class="start-btn" id="startBtn" onclick="startTest()">✨ 开始AI分析</button>
+  <button class="start-btn" id="startBtn" onclick="startTest()">✨ 开始测试</button>
 
   <!-- 加载中 -->
   <div class="loading" id="loading">
     <div class="heart">💖</div>
-    <p id="loadingText">AI正在分析你们的面相...</p>
+    <p id="loadingText">正在分析你们的面相...</p>
     <div class="steps" id="steps">
       <div id="step1">⏳ 识别面部特征中...</div>
       <div id="step2">⏳ 对比五官相似度...</div>
@@ -323,7 +321,7 @@
     <div id="dimensions"></div>
 
     <div class="comment-box">
-      <div class="comment-title">💌 AI缘分解读</div>
+      <div class="comment-title">💌 缘分解读</div>
       <div class="comment-text" id="commentText"></div>
     </div>
 
