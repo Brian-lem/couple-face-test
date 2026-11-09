@@ -527,6 +527,9 @@ async function callAI() {
     }
 
     const data = await response.json();
+    if (!data.choices) {
+      throw new Error('API返回错误: ' + JSON.stringify(data));
+    }
     const content = data.choices[0].message.content;
 
     // 解析JSON
