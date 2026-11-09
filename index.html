@@ -362,6 +362,7 @@
 let currentMode = 'couple';
 let photoA = null, photoB = null;
 let lastResult = null;
+let apiKey = ''; // API Key已内置在Cloudflare Worker中
 
 function switchMode(mode) {
   currentMode = mode;
