@@ -519,7 +519,7 @@ async function callAI() {
       }),
       signal: controller.signal
     });
-    clearTimeout(timeId);
+    clearTimeout(timeoutId);
 
     if (!response.ok) {
       const err = await response.text();
